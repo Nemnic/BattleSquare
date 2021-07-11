@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Squares Level.unity
+    path: Assets/Scenes/Main Menu.unity
+    guid: 33fdca341038bb64d8e1ff7df55b61e6
+  - enabled: 1
+    path: Assets/Scenes/Battle Squares Scene.unity
     guid: 0d159712d3c5e32428d6995491a51907
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: eac73a0f9c34a084990f23982ceed293
   m_configObjects: {}
