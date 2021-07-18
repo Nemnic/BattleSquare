@@ -25,6 +25,12 @@ public class LevelManger : MonoBehaviour
     [Header("Line size pixels")]
     [SerializeField] private int linePixelsSize;
 
+    // Private info for setting Lines and dots with offsets
+    public float lineLenght;
+    public float lineLenghtAndHalf;
+    public int magicNrExtraOffsetsForDots = 3;              // Not sure why, but correction was needed ... (offseting for diffrent origins?)
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +38,9 @@ public class LevelManger : MonoBehaviour
         x_Squares = Globals.instance.x_Squares;
         y_Squares = Globals.instance.y_Squares;
         squareSize = Globals.instance.squareSize;
+
+        lineLenght = linePixelsSize * squareSize;
+        lineLenghtAndHalf = lineLenght + (lineLenght /4);           // TODO: more Clearity needed .. why is it 4 not 2 ?
 
         SetupLevel();
     }
@@ -52,11 +61,21 @@ public class LevelManger : MonoBehaviour
 
     void SetUpDots()
     {
+        //  OLD With Middle Tots circles instead of buttons based
+
+        //for (int x = 0; x < x_Squares + 1; x++)
+        //{
+        //    for (int y = 0; y < y_Squares + 1; y++)
+        //    {
+        //        InstantiateNewObject(prefab_Dots, folder_Dots,  x,  y, 0 ,false);
+        //    }
+        //}
+
         for (int x = 0; x < x_Squares + 1; x++)
         {
             for (int y = 0; y < y_Squares + 1; y++)
             {
-                InstantiateNewObject(prefab_Dots, folder_Dots,  x,  y, 0 ,false);
+                InstantiateNewObject(prefab_Dots, folder_Dots, x * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, y * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, 0, false);
             }
         }
     }
@@ -78,7 +97,6 @@ public class LevelManger : MonoBehaviour
     {
         GameObject newObject;
 
-        float lineLenght = linePixelsSize * squareSize;
 
         for (int x = 0; x < x_Squares; x++)
         {
@@ -96,7 +114,7 @@ public class LevelManger : MonoBehaviour
                     newObject.transform.localScale = new Vector2(squareSize, 1);
                     newObject = SetLinesValues(newObject, x, y, false);
                     //InstantiateNewObject(prefab_Horicontal_Line, folder_Line_InCanvas, x, y, 1 , true);
-
+                    Globals.instance.AddLineCount();
                 }
 
                 newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * squareSize * linePixelsSize) ,
@@ -104,6 +122,8 @@ public class LevelManger : MonoBehaviour
                 newObject.transform.SetParent(folder_Line_InCanvas, false);
                 newObject.transform.localScale = new Vector2(squareSize, 1);
                 newObject = SetLinesValues(newObject, x, y+1, false);
+                Globals.instance.AddLineCount();
+
 
                 //  Verticals
                 float offsetVertival = (x_Squares * lineLenght) / 2;
@@ -116,7 +136,7 @@ public class LevelManger : MonoBehaviour
                     newObject.transform.SetParent(folder_Line_InCanvas, false);
                     newObject.transform.localScale = new Vector2(1, squareSize);
                     newObject = SetLinesValues(newObject, x, y, true);
-
+                    Globals.instance.AddLineCount();
                 }
 
                 newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival + lineLenght + (x * lineLenght) ,
@@ -125,7 +145,7 @@ public class LevelManger : MonoBehaviour
                 newObject.transform.SetParent(folder_Line_InCanvas, false);
                 newObject.transform.localScale = new Vector2(1, squareSize);
                 newObject = SetLinesValues(newObject, x + 1, y, true);
-
+                Globals.instance.AddLineCount();
             }
         }
     }
@@ -139,7 +159,7 @@ public class LevelManger : MonoBehaviour
         return gameObject;
     }
 
-    void InstantiateNewObject(GameObject prefab, Transform folder, int x, int y, int offset, bool toScale)
+    void InstantiateNewObject(GameObject prefab, Transform folder, float x, float y, int offset, bool toScale)
     {
         GameObject newObject = Instantiate(prefab, new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity);
         newObject.transform.SetParent(folder, false);

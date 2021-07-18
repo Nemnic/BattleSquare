@@ -26,6 +26,10 @@ public class Globals : MonoBehaviour
     [SerializeField, Tooltip("For Scaling. \nNot sure if using. But should. \nA float variable, Affect positioning, should affect size to")]
     public float squareSize = 2.0f;
 
+    [Header("Check for Game Finished ")]
+    [SerializeField] private int finishCount = 0;
+    //[SerializeField] private bool showWinScreen = false;
+
     [Header("Whos turns stuff")]
     [SerializeField] public bool isBluesTurn = true;
     [SerializeField] private GameObject directionArrow;
@@ -37,6 +41,29 @@ public class Globals : MonoBehaviour
 
     
 
+    
+    public void AddLineCount()
+    {
+        finishCount++;
+    }
+
+    public void RemoveLineCount()
+    {
+        finishCount--;
+        if (finishCount == 0)
+        {
+            ShowWinScreen();
+        }
+        else if (finishCount < 0)
+        {
+            Debug.LogError("ERROR: in Globals for line check;  WTF should never be under 0");
+        }
+    }
+
+    public void ShowWinScreen()
+    {
+        WinScreenManger.instance.SetWinScreen();
+    }
 
 
     public void Add(GameObject square)

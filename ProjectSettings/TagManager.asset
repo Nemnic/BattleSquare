@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Top UI Layer
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: GameObjects
     uniqueID: 2243637471
+    locked: 0
+  - name: Top UI Screen
+    uniqueID: 2511644605
     locked: 0

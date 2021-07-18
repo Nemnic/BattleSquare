@@ -23,8 +23,8 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
 
-    [SerializeField] private int scoreBlue;
-    [SerializeField] private int scoreOrange;
+    [SerializeField] public int scoreBlue;
+    [SerializeField] public int scoreOrange;
 
     [SerializeField] private TextMeshProUGUI textBlueScore;
     [SerializeField] private TextMeshProUGUI textOrangeScore;
@@ -41,14 +41,15 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            PointToBlue();
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            PointToOrange();
-        }
+        // Test of score count
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    PointToBlue();
+        //}
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    PointToOrange();
+        //}
     }
 
     private void ResetScore()

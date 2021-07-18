@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         //Check if it finished a square
         SetSquareSideCheck(xPos, yPos, isVertical);
 
+        // If player did not finish a square next players turn
         if (!Globals.instance.squareDone)
         {
             NextTurn();  
