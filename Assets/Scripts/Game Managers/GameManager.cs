@@ -20,6 +20,68 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    [Header("Check for Game Finished ")]
+    [SerializeField] private int finishCount = 0;
+    //[SerializeField] private bool showWinScreen = false;
+
+    [Header("List and Square check")]
+    public List<GameObject> squaresList = new List<GameObject>();
+    public List<GameObject> lineList = new List<GameObject>();
+
+    [SerializeField] public bool squareDone = false;
+
+
+    #region Checks for Game Finished
+
+    public void AddLineCount()
+    {
+        finishCount++;
+    }
+
+    public void RemoveLineCount()
+    {
+        finishCount--;
+        if (finishCount == 0)
+        {
+            ShowWinScreen();
+        }
+        else if (finishCount < 0)
+        {
+            Debug.LogError("ERROR: in GameManager for line check;  WTF should never be under 0");
+        }
+    }
+
+    public void ShowWinScreen()
+    {
+        WinScreenManger.instance.SetWinScreen();
+    }
+
+    #endregion
+
+    #region List functions Add and remove
+
+    public void AddSquareToList(GameObject square)
+    {
+        squaresList.Add(square);
+    }
+
+    public void RemoveSquareFromList(GameObject square)
+    {
+        squaresList.Remove(square);
+    }
+
+    public void AddLineToList(GameObject line)
+    {
+        lineList.Add(line);
+    }
+
+    public void RemoveLineFromList(GameObject line)
+    {
+        lineList.Remove(line);
+    }
+
+    #endregion
+
     public void ButtonClick(int xPos, int yPos, bool isVertical)
     {
         
@@ -27,18 +89,18 @@ public class GameManager : MonoBehaviour
         SetSquareSideCheck(xPos, yPos, isVertical);
 
         // If player did not finish a square next players turn
-        if (!Globals.instance.squareDone)
+        if (!squareDone)
         {
             NextTurn();  
         }
 
-        Globals.instance.squareDone = false;
+        squareDone = false;
 
     }
 
     public void NextTurn()
     {
-        Globals.instance.SwapTurn();
+        TurnManager.instance.SwapTurn();
     }
 
     void SetSquareSideCheck(int xPos, int yPos, bool isVertical)
@@ -48,7 +110,7 @@ public class GameManager : MonoBehaviour
         if (isVertical)
         {
 
-            foreach (var squareFromList in Globals.instance.squaresList)
+            foreach (var squareFromList in squaresList)
             {
                 // Fix Right side square for leftcheck
                 if (xPos == 0)
@@ -89,7 +151,7 @@ public class GameManager : MonoBehaviour
         // Horizontal lines
         else 
         {
-            foreach (var squareFromList in Globals.instance.squaresList)
+            foreach (var squareFromList in squaresList)
             {
                 // Fix bottom side square for topCheck
                 if (yPos == 0)
@@ -131,25 +193,29 @@ public class GameManager : MonoBehaviour
     private static void SetIsClickedRight(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Right = true;
-        squareFromList.GetComponent<Square>().CheckIfDone();
+        CheckDoneAndIncreaseSquareValue(squareFromList);
     }
     private static void SetIsClickedLeft(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Left = true;
-        squareFromList.GetComponent<Square>().CheckIfDone();
+        CheckDoneAndIncreaseSquareValue(squareFromList);
 
     }
     private static void SetIsClickedUp(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Up = true;
-        squareFromList.GetComponent<Square>().CheckIfDone();
+        CheckDoneAndIncreaseSquareValue(squareFromList);
 
     }
     private static void SetIsClickedDown(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Down = true;
-        squareFromList.GetComponent<Square>().CheckIfDone();
-
+        CheckDoneAndIncreaseSquareValue(squareFromList);
     }
 
+    private static void CheckDoneAndIncreaseSquareValue(GameObject squareFromList)
+    {
+        squareFromList.GetComponent<Square>().squareValue++;
+        squareFromList.GetComponent<Square>().CheckIfDone();
+    }
 }

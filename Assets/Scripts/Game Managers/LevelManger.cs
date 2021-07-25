@@ -87,7 +87,7 @@ public class LevelManger : MonoBehaviour
             {
                 GameObject newSquare = InstantiateNewSquare(prefab_Square_Base, folder_Squares, x, y, 1, false);
                 
-                Globals.instance.Add(newSquare);
+                GameManager.instance.AddSquareToList(newSquare);
                 
             }
         }
@@ -114,7 +114,8 @@ public class LevelManger : MonoBehaviour
                     newObject.transform.localScale = new Vector2(squareSize, 1);
                     newObject = SetLinesValues(newObject, x, y, false);
                     //InstantiateNewObject(prefab_Horicontal_Line, folder_Line_InCanvas, x, y, 1 , true);
-                    Globals.instance.AddLineCount();
+                    GameManager.instance.AddLineCount();
+                    GameManager.instance.AddLineToList(newObject);
                 }
 
                 newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * squareSize * linePixelsSize) ,
@@ -122,7 +123,8 @@ public class LevelManger : MonoBehaviour
                 newObject.transform.SetParent(folder_Line_InCanvas, false);
                 newObject.transform.localScale = new Vector2(squareSize, 1);
                 newObject = SetLinesValues(newObject, x, y+1, false);
-                Globals.instance.AddLineCount();
+                GameManager.instance.AddLineCount();
+                GameManager.instance.AddLineToList(newObject);
 
 
                 //  Verticals
@@ -136,7 +138,9 @@ public class LevelManger : MonoBehaviour
                     newObject.transform.SetParent(folder_Line_InCanvas, false);
                     newObject.transform.localScale = new Vector2(1, squareSize);
                     newObject = SetLinesValues(newObject, x, y, true);
-                    Globals.instance.AddLineCount();
+                    GameManager.instance.AddLineCount();
+                    GameManager.instance.AddLineToList(newObject);
+
                 }
 
                 newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival + lineLenght + (x * lineLenght) ,
@@ -145,7 +149,9 @@ public class LevelManger : MonoBehaviour
                 newObject.transform.SetParent(folder_Line_InCanvas, false);
                 newObject.transform.localScale = new Vector2(1, squareSize);
                 newObject = SetLinesValues(newObject, x + 1, y, true);
-                Globals.instance.AddLineCount();
+                GameManager.instance.AddLineCount();
+                GameManager.instance.AddLineToList(newObject);
+
             }
         }
     }

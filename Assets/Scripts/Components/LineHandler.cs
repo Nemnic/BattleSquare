@@ -33,6 +33,6 @@ public class LineHandler : MonoBehaviour
         gameObject.GetComponent<Button>().interactable = false;     // it goes away ?
         GameManager.instance.ButtonClick(xPos, yPos, isVertical);
 
-        Globals.instance.RemoveLineCount();
+        GameManager.instance.RemoveLineCount();
     }
 }

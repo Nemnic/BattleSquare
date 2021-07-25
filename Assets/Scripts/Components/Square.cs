@@ -17,7 +17,9 @@ public class Square : MonoBehaviour
     public bool isClicked_Right = false;
     public bool isClicked_Up = false;
     public bool isClicked_Down = false;
-    public bool isDone = false;
+    public bool isDone = false;                                 // TODO : check if still wanted it to remain or implement it properly
+
+    [SerializeField] public int squareValue = 0;
 
     [Header("Whos Turn")]
     [SerializeField] private Color colorDefault = new Color(178,178,178);
@@ -37,25 +39,6 @@ public class Square : MonoBehaviour
         gameObject.GetComponent<Renderer>().material.color = colorDefault;
 
         SetColor();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            gameObject.GetComponent<Renderer>().material.color = colorOrange;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            gameObject.GetComponent<Renderer>().material.color = colorBlue;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            gameObject.GetComponent<Renderer>().material.color = colorDefault;
-        }
-
-        //SetColor();
     }
 
     public bool CheckSquareStatus()
@@ -78,7 +61,7 @@ public class Square : MonoBehaviour
         {
             if (CheckSquareStatus())
             {
-                if (Globals.instance.isBluesTurn)
+                if (TurnManager.instance.isBluesTurn)
                 {
                     gameObject.GetComponent<Renderer>().material.color = colorBlue;
                 }
@@ -89,11 +72,6 @@ public class Square : MonoBehaviour
 
             }
         }
-        
-
-        //gameObject.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
-        //gameObject.GetComponent<Renderer>().material.color = new Color(4, 15, 79);
-
     }
 
     public void CheckIfDone()
@@ -101,25 +79,27 @@ public class Square : MonoBehaviour
 
         if (CheckSquareStatus())
         {
-            if (Globals.instance.isBluesTurn)
+            if (TurnManager.instance.isBluesTurn)
             {
                 ScoreManager.instance.PointToBlue();
                 gameObject.GetComponent<Renderer>().material.color = colorBlue;
+
+                Debug.Log("CheckIfDone returned : true at :" + xPos + " , " + yPos + " and addad a point to Blue");
             }
             else
             {
                 ScoreManager.instance.PointToOrange();
                 gameObject.GetComponent<Renderer>().material.color = colorOrange;
+
+                Debug.Log("CheckIfDone returned : true at :" + xPos + " , " + yPos + " and addad a point to Orange");
             }
 
-            Globals.instance.squareDone = true;
+            GameManager.instance.squareDone = true;
 
-            Debug.Log("CheckIfDone returned : true at :" + xPos +" , "+ yPos + " and addad a point");
         }
         else
         {
-            Debug.Log("CheckIfDone returned : false at :" + xPos + " , " + yPos + " This square not done");
-
+            //Debug.Log("CheckIfDone returned : false at :" + xPos + " , " + yPos + " This square not done");
         }
 
     }
