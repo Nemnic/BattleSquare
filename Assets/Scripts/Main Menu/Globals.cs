@@ -13,10 +13,19 @@ public class Globals : MonoBehaviour
         if (instance != null)
         {
             Debug.LogWarning("Warning! More then one instance of Globals found!");
+            Destroy(gameObject);
+            Debug.Log("The new instace of Globals has been destroyed as only one should exist");
+
             return;
         }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
 
-        instance = this;
+            Debug.Log("we created the Global");
+        }
+
     }
 
     #endregion

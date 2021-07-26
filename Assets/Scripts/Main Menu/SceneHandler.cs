@@ -11,8 +11,17 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void Play()
+    public void PlayVsLocal()
     {
+        Globals.instance.is_VS_AI = false;
+        Debug.Log("We are startinging Local Game!, is_VS_AI = false");
+        SceneManager.LoadScene(1);
+    }
+
+    public void PlayVsAI()
+    {
+        Globals.instance.is_VS_AI = true;
+        Debug.Log("We are startinging VS AI Game!, is_VS_AI = true");
         SceneManager.LoadScene(1);
     }
 

@@ -123,6 +123,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &162254059
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1436719213}
+    m_Modifications:
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113504588254299198, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+      propertyPath: m_Name
+      value: Globals
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+--- !u!4 &162254060 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6113504588254299193, guid: 54fe3964e1362f04d9aee27a666d89d8, type: 3}
+  m_PrefabInstance: {fileID: 162254059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &212238572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,7 +2019,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436719213}
-  - component: {fileID: 1436719215}
   - component: {fileID: 1436719212}
   - component: {fileID: 1436719214}
   - component: {fileID: 1436719216}
@@ -2003,7 +2064,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 162254060}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2023,24 +2085,6 @@ MonoBehaviour:
   scoreOrange: 0
   textBlueScore: {fileID: 1236597804}
   textOrangeScore: {fileID: 2082761057}
---- !u!114 &1436719215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436719211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d96d001dde0394194fd480eacbb8cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x_Squares: 5
-  y_Squares: 5
-  squareSize: 2
-  is_VS_AI: 0
-  squaresList: []
-  squareDone: 0
 --- !u!114 &1436719216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,6 +2098,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishCount: 0
+  squaresList: []
+  lineList: []
+  squareDone: 0
 --- !u!114 &1436719217
 MonoBehaviour:
   m_ObjectHideFlags: 0
