@@ -60,7 +60,9 @@ public class WinScreenManger : MonoBehaviour
         {
             Debug.LogError("WTF, How could this happen ?");
         }
-
+        Debug.Log("Game is Finished! ");
+        GameManager.instance.isGameStillRuning = false;
+        TurnManager.instance.BlockPlayer(false);
     }
 
     private void SetScore()

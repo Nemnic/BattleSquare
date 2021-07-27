@@ -30,6 +30,11 @@ public class TurnManager : MonoBehaviour
     public void SwapTurn()
     {
         isBluesTurn = !isBluesTurn;
+
+        if (Globals.instance.is_VS_AI)
+        {
+            BlockPlayerDuringAIMove();
+        }
     }
 
     public void SetPointer()
@@ -52,6 +57,23 @@ public class TurnManager : MonoBehaviour
         {
             blockPanel.SetActive(!blockPanel.activeSelf);
         }
+    }
+
+    public void BlockPlayerDuringAIMove()
+    {
+        if (isBluesTurn)
+        {
+            BlockPlayer(false);
+        }
+        else
+        {
+            BlockPlayer(true);
+        }
+    }
+
+    public void BlockPlayer(bool active)
+    {
+        blockPanel.SetActive(active);
     }
 
     public Color GetCurrentColor()

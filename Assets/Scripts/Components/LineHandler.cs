@@ -24,7 +24,7 @@ public class LineHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!darkColorSet)      // just to make first layer of check a bool
+        if (!darkColorSet)      // just to make first layer of check is a bool so it does not go through to many if statsments
         {
             if (myFinishCountIndex != -1)
             {
@@ -49,6 +49,11 @@ public class LineHandler : MonoBehaviour
 
         // Remove Line count for game finished
         GameManager.instance.RemoveLineCount();
+
+        // Remove from list for AI to find active lines
+        GameManager.instance.RemoveLineFromList(gameObject);    
+        
+        // Keep track of when the button was pushed for setting it to black when it was not last pressed
         myFinishCountIndex = GameManager.instance.finishCount;
     }
 

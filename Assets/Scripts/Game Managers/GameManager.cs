@@ -30,6 +30,53 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public bool squareDone = false;
 
+    private bool firstAIMessage = true;
+    public bool isGameStillRuning = true;
+
+    private void Update()
+    {
+        if (Globals.instance.is_VS_AI)
+        {
+            if (firstAIMessage)
+            {
+                Debug.Log("GameManagers Update activated!");
+                firstAIMessage = false;
+            }
+
+            //TurnManager.instance.BlockPlayerDuringAIMove();
+
+            if (!TurnManager.instance.isBluesTurn)
+            {
+                if (isGameStillRuning)
+                {
+                    // AI's turn
+                    AIManager.instance.ActivateTurn();
+                }
+            }
+        }
+    }
+
+    // Actual main loop ?
+    public void ButtonClick(int xPos, int yPos, bool isVertical)
+    {
+        
+        //Check if it finished a square
+        SetSquareSideCheck(xPos, yPos, isVertical);
+
+        // If player did not finish a square next players turn
+        if (!squareDone)
+        {
+            NextTurn();  
+        }
+
+        squareDone = false;
+
+    }
+
+    public void NextTurn()
+    {
+        TurnManager.instance.SwapTurn();
+    }
 
     #region Checks for Game Finished
 
@@ -82,27 +129,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-                                                        // Actual main loop 
-    public void ButtonClick(int xPos, int yPos, bool isVertical)
-    {
-        
-        //Check if it finished a square
-        SetSquareSideCheck(xPos, yPos, isVertical);
-
-        // If player did not finish a square next players turn
-        if (!squareDone)
-        {
-            NextTurn();  
-        }
-
-        squareDone = false;
-
-    }
-
-    public void NextTurn()
-    {
-        TurnManager.instance.SwapTurn();
-    }
+    #region Setting squares
 
     void SetSquareSideCheck(int xPos, int yPos, bool isVertical)
     {
@@ -219,4 +246,6 @@ public class GameManager : MonoBehaviour
         squareFromList.GetComponent<Square>().squareValue++;
         squareFromList.GetComponent<Square>().CheckIfDone();
     }
+
+    #endregion
 }
