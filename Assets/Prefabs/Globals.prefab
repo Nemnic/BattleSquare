@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d96d001dde0394194fd480eacbb8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  is_VS_AI: 0
+  colorDefault: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  colorBlue: {r: 0.015686275, g: 0.05882353, b: 0.30980393, a: 1}
+  colorOrange: {r: 0.9607843, g: 0.6313726, b: 0.11372549, a: 1}
   x_Squares: 5
   y_Squares: 5
   squareSize: 2
-  is_VS_AI: 0

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [Header("Check for Game Finished ")]
-    [SerializeField] private int finishCount = 0;
+    [SerializeField] public int finishCount = 0;
     //[SerializeField] private bool showWinScreen = false;
 
     [Header("List and Square check")]
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+                                                        // Actual main loop 
     public void ButtonClick(int xPos, int yPos, bool isVertical)
     {
         

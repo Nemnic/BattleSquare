@@ -53,4 +53,16 @@ public class TurnManager : MonoBehaviour
             blockPanel.SetActive(!blockPanel.activeSelf);
         }
     }
+
+    public Color GetCurrentColor()
+    {
+        if (isBluesTurn)
+        {
+            return Globals.instance.colorBlue;
+        }
+        else
+        {
+            return Globals.instance.colorOrange;
+        }
+    }
 }

@@ -21,10 +21,6 @@ public class Square : MonoBehaviour
 
     [SerializeField] public int squareValue = 0;
 
-    [Header("Whos Turn")]
-    [SerializeField] private Color colorDefault = new Color(178,178,178);
-    [SerializeField] private Color colorBlue = new Color(4,15,79);
-    [SerializeField] private Color colorOrange = new Color(245,161,29);
 
     private void Awake()
     {   
@@ -36,7 +32,7 @@ public class Square : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<Renderer>().material.color = colorDefault;
+        gameObject.GetComponent<Renderer>().material.color = Globals.instance.colorDefault;
 
         SetColor();
     }
@@ -63,11 +59,11 @@ public class Square : MonoBehaviour
             {
                 if (TurnManager.instance.isBluesTurn)
                 {
-                    gameObject.GetComponent<Renderer>().material.color = colorBlue;
+                    gameObject.GetComponent<Renderer>().material.color = Globals.instance.colorBlue;
                 }
                 else
                 {
-                    gameObject.GetComponent<Renderer>().material.color = colorOrange;
+                    gameObject.GetComponent<Renderer>().material.color = Globals.instance.colorOrange;
                 }
 
             }
@@ -82,14 +78,14 @@ public class Square : MonoBehaviour
             if (TurnManager.instance.isBluesTurn)
             {
                 ScoreManager.instance.PointToBlue();
-                gameObject.GetComponent<Renderer>().material.color = colorBlue;
+                gameObject.GetComponent<Renderer>().material.color = Globals.instance.colorBlue;
 
                 Debug.Log("CheckIfDone returned : true at :" + xPos + " , " + yPos + " and addad a point to Blue");
             }
             else
             {
                 ScoreManager.instance.PointToOrange();
-                gameObject.GetComponent<Renderer>().material.color = colorOrange;
+                gameObject.GetComponent<Renderer>().material.color = Globals.instance.colorOrange;
 
                 Debug.Log("CheckIfDone returned : true at :" + xPos + " , " + yPos + " and addad a point to Orange");
             }

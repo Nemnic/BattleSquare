@@ -30,14 +30,18 @@ public class Globals : MonoBehaviour
 
     #endregion
 
+    [Header("VS AI Stuff")]
+    [SerializeField] public bool is_VS_AI = false;
+
+    [Header("Color Theme")]
+    [SerializeField] public Color colorDefault = new Color(178,178,178);
+    [SerializeField] public Color colorBlue = new Color(4,15,79);
+    [SerializeField] public Color colorOrange = new Color(245,161,29);
+
     [Header("Size")]
     [SerializeField] public int x_Squares = 5;
     [SerializeField] public int y_Squares = 5;
     [SerializeField, Tooltip("For Scaling. \nNot sure if using. But should. \nA float variable, Affect positioning, should affect size to")]
     public float squareSize = 2.0f;
 
-
-    [Header("VS AI Stuff")]
-    [SerializeField] public bool is_VS_AI = false;
-    
 }
