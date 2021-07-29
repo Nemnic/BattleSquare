@@ -30,6 +30,11 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("Lobby");
     }
 
+    public void Settings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quit button was pressed");

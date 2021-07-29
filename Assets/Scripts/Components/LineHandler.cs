@@ -39,7 +39,10 @@ public class LineHandler : MonoBehaviour
     public void ButtonPressed()
     {
         // Set temp color
-        SetDisabledColor(TurnManager.instance.GetCurrentColor());
+        if (Globals.instance.showLastPressedLine)
+        {
+            SetDisabledColor(TurnManager.instance.GetCurrentColor());
+        }
 
         // Disable interactable button
         gameObject.GetComponent<Button>().interactable = false;     // it goes away ?

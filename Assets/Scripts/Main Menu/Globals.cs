@@ -14,7 +14,7 @@ public class Globals : MonoBehaviour
         {
             Debug.LogWarning("Warning! More then one instance of Globals found!");
             Destroy(gameObject);
-            Debug.Log("The new instace of Globals has been destroyed as only one should exist");
+            Debug.LogWarning("The new instace of Globals has been destroyed as only one should exist");
 
             return;
         }
@@ -32,6 +32,7 @@ public class Globals : MonoBehaviour
 
     [Header("VS AI Stuff")]
     [SerializeField] public bool is_VS_AI = false;
+    [SerializeField] public bool delayOnAI = true;
 
     [Header("Color Theme")]
     [SerializeField] public Color colorDefault = new Color(178,178,178);
@@ -43,5 +44,13 @@ public class Globals : MonoBehaviour
     [SerializeField] public int y_Squares = 5;
     [SerializeField, Tooltip("For Scaling. \nNot sure if using. But should. \nA float variable, Affect positioning, should affect size to")]
     public float squareSize = 2.0f;
+
+    [Header("Settings")]
+    [SerializeField] public bool showLastPressedLine = true;
+
+    public void ToggleShowLastLinePressed()
+    {
+        showLastPressedLine = !showLastPressedLine;
+    }
 
 }
