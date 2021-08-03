@@ -25,7 +25,16 @@ public class Toggler : MonoBehaviour
 
         if (currentToggleString == "ShowLine")
         {
-            toggle.isOn = Globals.instance.showLastPressedLine;
+            toggle.isOn = Globals.instance.IsShowingLastPressedLine;
+        }
+        else if (currentToggleString == "AIDelay")
+        {
+            toggle.isOn = Globals.instance.isDelayOnAI;
+
+        }
+        else if (currentToggleString == "SoundsOn")
+        {
+            toggle.isOn = Globals.instance.isSoundsOn;
         }
         else
         {
@@ -37,8 +46,16 @@ public class Toggler : MonoBehaviour
     {
         if (currentToggleString == "ShowLine")
         {
-            Globals.instance.showLastPressedLine = toggle.isOn;
+            Globals.instance.IsShowingLastPressedLine = toggle.isOn;
 
+        }
+        else if (currentToggleString == "AIDelay")
+        {
+            Globals.instance.isDelayOnAI = toggle.isOn;
+        }
+        else if (currentToggleString == "SoundsOn")
+        {
+            Globals.instance.isSoundsOn = toggle.isOn;
         }
         else
         {

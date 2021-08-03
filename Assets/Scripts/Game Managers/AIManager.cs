@@ -19,11 +19,33 @@ public class AIManager : MonoBehaviour
     }
 
     #endregion
-    
+
     //Debug check: keep track of AI move nr 
     [SerializeField] private int moveNr = 0;
 
+    private float timer = 0;
+
     public void ActivateTurn()          // Change name to "Do turn" ?
+    {
+        if (Globals.instance.isDelayOnAI)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > 0.5f)
+            {
+                DoTurn();
+                timer = 0;
+            }
+        }
+        else
+        {
+            DoTurn();
+        }
+
+        
+    }
+
+    private void DoTurn()
     {
         // Find and select a random aktiv line
         int listMax = GameManager.instance.lineList.Count;
@@ -43,4 +65,6 @@ public class AIManager : MonoBehaviour
             Debug.LogError("AI Manager: No more list to click! Game should have not have activated this function at this point!");
         }
     }
+
+
 }

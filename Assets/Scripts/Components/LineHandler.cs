@@ -39,7 +39,7 @@ public class LineHandler : MonoBehaviour
     public void ButtonPressed()
     {
         // Set temp color
-        if (Globals.instance.showLastPressedLine)
+        if (Globals.instance.IsShowingLastPressedLine)
         {
             SetDisabledColor(TurnManager.instance.GetCurrentColor());
         }

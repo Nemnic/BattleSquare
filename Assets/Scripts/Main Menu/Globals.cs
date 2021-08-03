@@ -32,7 +32,7 @@ public class Globals : MonoBehaviour
 
     [Header("VS AI Stuff")]
     [SerializeField] public bool is_VS_AI = false;
-    [SerializeField] public bool delayOnAI = true;
+    
 
     [Header("Color Theme")]
     [SerializeField] public Color colorDefault = new Color(178,178,178);
@@ -46,11 +46,13 @@ public class Globals : MonoBehaviour
     public float squareSize = 2.0f;
 
     [Header("Settings")]
-    [SerializeField] public bool showLastPressedLine = true;
+    [SerializeField] public bool IsShowingLastPressedLine = true;
+    [SerializeField] public bool isDelayOnAI = true;
+    [SerializeField] public bool isSoundsOn = true;
 
     public void ToggleShowLastLinePressed()
     {
-        showLastPressedLine = !showLastPressedLine;
+        IsShowingLastPressedLine = !IsShowingLastPressedLine;
     }
 
 }
