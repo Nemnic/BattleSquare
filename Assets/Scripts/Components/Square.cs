@@ -75,6 +75,8 @@ public class Square : MonoBehaviour
 
         if (CheckSquareStatus())
         {
+            SFX.instance.PlaySquareDone();
+
             if (TurnManager.instance.isBluesTurn)
             {
                 ScoreManager.instance.PointToBlue();

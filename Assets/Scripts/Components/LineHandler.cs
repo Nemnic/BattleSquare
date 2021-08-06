@@ -38,6 +38,8 @@ public class LineHandler : MonoBehaviour
 
     public void ButtonPressed()
     {
+        SFX.instance.PlayClick();
+
         // Set temp color
         if (Globals.instance.IsShowingLastPressedLine)
         {

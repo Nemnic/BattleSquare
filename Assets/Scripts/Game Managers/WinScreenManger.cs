@@ -44,6 +44,8 @@ public class WinScreenManger : MonoBehaviour
 
     private void SetWinner()
     {
+        SFX.instance.PlayWin();
+
         if (ScoreManager.instance.scoreBlue > ScoreManager.instance.scoreOrange)
         {
             textWinner.SetText("Winner is Blue");

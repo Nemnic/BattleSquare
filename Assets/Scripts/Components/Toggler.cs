@@ -44,10 +44,11 @@ public class Toggler : MonoBehaviour
 
     void ToggleValueChanged(Toggle change)
     {
+        SoundToggle();
+
         if (currentToggleString == "ShowLine")
         {
             Globals.instance.IsShowingLastPressedLine = toggle.isOn;
-
         }
         else if (currentToggleString == "AIDelay")
         {
@@ -60,6 +61,18 @@ public class Toggler : MonoBehaviour
         else
         {
             Debug.LogError("ERROR: Because of hardcoding, Toggle at value change wrong currentToggleString");
+        }
+    }
+
+    void SoundToggle()
+    {
+        if (toggle.isOn)
+        {
+            SFX.instance.PlayToggleOn();
+        }
+        else
+        {
+            SFX.instance.PlayToggleOff();
         }
     }
 }
