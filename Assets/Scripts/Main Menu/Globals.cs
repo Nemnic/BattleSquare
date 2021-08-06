@@ -49,6 +49,7 @@ public class Globals : MonoBehaviour
     [SerializeField] public bool IsShowingLastPressedLine = true;
     [SerializeField] public bool isDelayOnAI = true;
     [SerializeField] public bool isSoundsOn = true;
+    [SerializeField] public bool isMusicOn = true;
 
     public void ToggleShowLastLinePressed()
     {

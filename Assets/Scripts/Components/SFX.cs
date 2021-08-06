@@ -29,6 +29,7 @@ public class SFX : MonoBehaviour
 
     #endregion
 
+    // Sounds
     public AudioSource soundSelect;
     public AudioSource soundBack;
     public AudioSource soundClick;
@@ -38,43 +39,99 @@ public class SFX : MonoBehaviour
     public AudioSource soundLose;
     public AudioSource soundSquareDone;
 
+    // Music
+    public AudioSource song1;
+    public AudioSource song2;
+
+    #region Sounds
+
     public void PlaySelect()
     {
-        soundSelect.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundSelect.Play();
+        }
     }
 
     public void PlayBack()
     {
-        soundBack.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundBack.Play();
+        }
     }
 
     public void PlayClick()
     {
-        soundClick.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundClick.Play();
+        }
     }
 
     public void PlayToggleOn()
     {
-        soundToggleOn.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundToggleOn.Play();
+        }
     }
 
     public void PlayToggleOff()
     {
-        soundToggleOff.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundToggleOff.Play();
+        }
     }
-    
+
     public void PlayWin()
     {
-        soundWin.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundWin.Play();
+        }
     }
 
     public void PlayLose()
     {
-        soundLose.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundLose.Play();
+        }
     }
 
     public void PlaySquareDone()
     {
-        soundSquareDone.Play();
+        if (Globals.instance.isSoundsOn)
+        {
+            soundSquareDone.Play();
+        }
     }
+
+    #endregion
+
+    #region Music
+
+    public void PlaySong1()
+    {
+        song1.Play();
+    }
+
+    public void PlaySong2()
+    {
+        song2.Play();
+    }
+
+    public void PlayMusic()
+    {
+        song1.Play();
+    }
+
+    public void StopMusic()
+    {
+        song1.Stop();
+    }
+
+    #endregion
 }

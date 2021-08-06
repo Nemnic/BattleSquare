@@ -36,6 +36,10 @@ public class Toggler : MonoBehaviour
         {
             toggle.isOn = Globals.instance.isSoundsOn;
         }
+        else if (currentToggleString == "MusicOn")
+        {
+            toggle.isOn = Globals.instance.isMusicOn;
+        }
         else
         {
             Debug.LogError("ERROR: Because of hardcoding, Toggle at start wrong currentToggleString");
@@ -44,7 +48,6 @@ public class Toggler : MonoBehaviour
 
     void ToggleValueChanged(Toggle change)
     {
-        SoundToggle();
 
         if (currentToggleString == "ShowLine")
         {
@@ -58,10 +61,25 @@ public class Toggler : MonoBehaviour
         {
             Globals.instance.isSoundsOn = toggle.isOn;
         }
+        else if (currentToggleString == "MusicOn")
+        {
+            Globals.instance.isMusicOn = toggle.isOn;
+            if (toggle.isOn)
+            {
+                SFX.instance.PlayMusic();
+            }
+            else
+            {
+                SFX.instance.StopMusic();
+            }
+        }
         else
         {
             Debug.LogError("ERROR: Because of hardcoding, Toggle at value change wrong currentToggleString");
         }
+
+        SoundToggle();
+
     }
 
     void SoundToggle()
