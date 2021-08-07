@@ -33,7 +33,15 @@ public class SceneHandler : MonoBehaviour
     public void Lobby()
     {
         SFX.instance.PlaySelect();
+
         SceneManager.LoadScene("Lobby");
+    }
+
+    public void LineMode()
+    {
+        SFX.instance.PlaySelect();
+
+        SceneManager.LoadScene("Line Mode");
     }
 
     public void Settings()
