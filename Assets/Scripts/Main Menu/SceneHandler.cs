@@ -58,4 +58,14 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("Quit button was pressed");
         Application.Quit();
     }
+
+    // Temp untill system is made completely
+    
+    public void OldLobby()
+    {
+        SFX.instance.PlaySelect();
+
+        SceneManager.LoadScene("Lobby Old");
+    }
+
 }

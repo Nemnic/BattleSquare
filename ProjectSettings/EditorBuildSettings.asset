@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Line Mode.unity
     guid: b1d04c824fac26b4d9ff9c291932746f
+  - enabled: 1
+    path: Assets/Scenes/Lobby Old.unity
+    guid: 9ead309ce7bc3b24f83959236dcb3eb3
   m_configObjects: {}
