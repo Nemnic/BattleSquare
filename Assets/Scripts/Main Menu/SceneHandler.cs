@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class SceneHandler : MonoBehaviour
 {
@@ -68,4 +69,25 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("Lobby Old");
     }
 
+
+    // Multiplayer related /Photon
+
+    public void DisconnectPhoton()
+    {
+        Debug.Log("SceneHandler: We are Disconnecting Photon");
+        PhotonNetwork.Disconnect();
+    }
+
+    public void DisconnectFromRoom()
+    {
+        Debug.Log("SceneHandler: We are trying to leaving the room");
+        PhotonNetwork.LeaveRoom();
+        
+    }
+
+    public void DisconnectFromLobby()
+    {
+        Debug.Log("SceneHandler: We are trying to leaving the Lobby");
+        PhotonNetwork.LeaveLobby();
+    }
 }

@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject buttonStart;
     [SerializeField] private GameObject buttonCancel;
+    [SerializeField] private GameObject buttonloading;
+
+    [SerializeField] private InputField playerNameInput;
 
     private int roomSize = 2;
 
     public override void OnConnectedToMaster()
     {
         buttonStart.SetActive(true);
+        buttonloading.SetActive(false);
+
+        CheckForNickName();
     }
 
     public void StartGame()
@@ -49,5 +56,37 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         buttonStart.SetActive(true);
         buttonCancel.SetActive(false);
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void UsernameInput(string username)
+    {
+        PhotonNetwork.NickName = username;
+    }
+
+    private void CheckForNickName()
+    {
+        // Check for players name saved to players prefs
+        if (PlayerPrefs.HasKey("NickName"))
+        {
+            if (PlayerPrefs.GetString("NickName") == "")
+            {
+                PhotonNetwork.NickName = "Player " + Random.Range(0, 1000);
+            }
+            else
+            {
+                PhotonNetwork.NickName = PlayerPrefs.GetString("NickName");
+            }
+        }
+        else
+        {
+            PhotonNetwork.NickName = "Player " + Random.Range(0, 1000);
+        }
+        playerNameInput.text = PhotonNetwork.NickName;
+    }
+
+    public void PlayerNameUpdate(string nameInput)
+    {
+        PhotonNetwork.NickName = nameInput;
+        PlayerPrefs.SetString("NickName", nameInput);
     }
 }

@@ -11,9 +11,9 @@ public class SFX : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("Warning! More then one instance of SFX found!");
+            //Debug.LogWarning("Warning! More then one instance of SFX found!");
             Destroy(gameObject);
-            Debug.LogWarning("The new instace of SFX has been destroyed as only one should exist");
+            //Debug.LogWarning("The new instace of SFX has been destroyed as only one should exist");
 
             return;
         }

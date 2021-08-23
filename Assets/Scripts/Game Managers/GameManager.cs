@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Photon.Pun;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    [Header("Players names")]
+    [SerializeField] TextMeshProUGUI blueName;
+    [SerializeField] TextMeshProUGUI orangeName;
+
     [Header("Check for Game Finished ")]
     [SerializeField] public int finishCount = 0;
     //[SerializeField] private bool showWinScreen = false;
@@ -32,6 +38,30 @@ public class GameManager : MonoBehaviour
 
     private bool firstAIMessage = true;
     public bool isGameStillRuning = true;
+
+    private void Start()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            blueName.text = PhotonNetwork.NickName;
+        }
+        else
+        {
+            orangeName.text = PhotonNetwork.NickName;
+        }
+    }
+
+    public void SetName(string nameIn)
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            blueName.text = nameIn;
+        }
+        else
+        {
+            orangeName.text = nameIn;
+        }
+    }
 
     private void Update()
     {

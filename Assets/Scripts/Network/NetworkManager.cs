@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -15,6 +16,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("We are now connected to the " + PhotonNetwork.CloudRegion + " server!");
         PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.LogWarning("NetworkManager: We have disconnected");
     }
 
 }
