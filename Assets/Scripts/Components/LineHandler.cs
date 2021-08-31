@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class LineHandler : MonoBehaviour
 {
+    private PhotonView myPhotonView;
+    [SerializeField] private bool isClicked = false;
+    [SerializeField] private bool isNotPressedYet = true;
+
     [Header("Position")]
     [SerializeField] public int xPos;
     [SerializeField] public int yPos;
@@ -18,7 +24,19 @@ public class LineHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        myPhotonView = GetComponent<PhotonView>();
+    }
+
+
+    [PunRPC]
+    void RPC_ButtonPressed()
+    {
+        isClicked = true;
+    }
+
+    public void ButtonPressed_With_RPC()
+    {
+        myPhotonView.RPC("RPC_ButtonPressed", RpcTarget.All);
     }
 
     // Update is called once per frame
@@ -32,6 +50,15 @@ public class LineHandler : MonoBehaviour
                 {
                     DarkenLine();
                 }
+            }
+        }
+
+        if (isNotPressedYet)
+        {
+            if (isClicked)
+            {
+                ButtonPressed();
+                isNotPressedYet = false;
             }
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7856400991309661867}
   - component: {fileID: 7856400991309661870}
   - component: {fileID: -2072040501696537986}
-  - component: {fileID: 6990692343283129083}
+  - component: {fileID: -3238139605103801383}
   m_Layer: 5
   m_Name: Button-line-Vertical
   m_TagString: Untagged
@@ -125,7 +125,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7856400991309661870}
         m_TargetAssemblyTypeName: LineHandler, Assembly-CSharp
-        m_MethodName: ButtonPressed
+        m_MethodName: ButtonPressed_With_RPC
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97765f953032ae40a2a8508c35f2d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClicked: 0
+  isNotPressedYet: 1
   xPos: 0
   yPos: 0
   isVertical: 0
@@ -169,12 +171,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 6990692343283129083}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &6990692343283129083
+--- !u!114 &-3238139605103801383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,6 +188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
-  m_SynchronizeRotation: 0
+  m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1

@@ -38,6 +38,9 @@ MonoBehaviour:
   - DestroyRpc
   - RPC_SendName
   - RPC_SendTimer
+  - RPC_ButtonPressed
+  - ChatMessage
+  - RPC_SetParent
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
