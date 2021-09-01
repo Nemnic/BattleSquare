@@ -21,6 +21,32 @@ public class LineHandler : MonoBehaviour
     public int myFinishCountIndex = -1;
     private bool darkColorSet = false;
 
+
+    void Awake()
+    {
+        this.transform.SetParent(GameObject.Find("Lines").GetComponent<Transform>(), false);
+
+        SetScale();
+
+    }
+
+    private void SetScale()
+    {
+        if (gameObject.tag == "Horizontal")
+        {
+            this.transform.localScale = new Vector2(Globals.instance.squareSize, 1);
+        }
+        else if (gameObject.tag == "Vertical")
+        {
+            this.transform.localScale = new Vector2(1, Globals.instance.squareSize);
+        }
+        else
+        {
+            Debug.Log("LineHandler: ERROR, unwanted outcome");
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {

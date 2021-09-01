@@ -292,8 +292,8 @@ MonoBehaviour:
   text_PlayerName: {fileID: 1933269386}
   text_playerCount: {fileID: 1129588934}
   text_TimerToStart: {fileID: 1688327875}
-  maxWaitTime: 3
-  maxFullGameTime: 3
+  maxWaitTime: 1
+  maxFullGameTime: 1
 --- !u!4 &119513492
 Transform:
   m_ObjectHideFlags: 0

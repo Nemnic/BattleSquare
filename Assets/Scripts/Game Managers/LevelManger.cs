@@ -132,8 +132,8 @@ public class LevelManger : MonoBehaviour
 
                     //photonView.RPC("RPC_SetParent", RpcTarget.All, newObject);
 
-                    newObject.transform.SetParent(folder_Line_InCanvas, false);       // moved to RPC
-                    newObject.transform.localScale = new Vector2(squareSize, 1);
+                    //newObject.transform.SetParent(folder_Line_InCanvas, false);       // moved to RPC
+                    //newObject.transform.localScale = new Vector2(squareSize, 1);
                     newObject = SetLinesValues(newObject, x, y, false);
                     //InstantiateNewObject(prefab_Horicontal_Line, folder_Line_InCanvas, x, y, 1 , true);
                     GameManager.instance.AddLineCount();
@@ -144,8 +144,8 @@ public class LevelManger : MonoBehaviour
                         posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize * 2), Quaternion.identity);
                 //newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * squareSize * linePixelsSize) ,
                 //        posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize*2 ), Quaternion.identity);
-                newObject.transform.SetParent(folder_Line_InCanvas, false);
-                newObject.transform.localScale = new Vector2(squareSize, 1);
+                //newObject.transform.SetParent(folder_Line_InCanvas, false);
+                //newObject.transform.localScale = new Vector2(squareSize, 1);
                 newObject = SetLinesValues(newObject, x, y+1, false);
                 GameManager.instance.AddLineCount();
                 GameManager.instance.AddLineToList(newObject);
@@ -161,8 +161,8 @@ public class LevelManger : MonoBehaviour
                         offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
                     //newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival,
                     //    offsetVertival - lineLenght/2 - (y * lineLenght)), Quaternion.identity);
-                    newObject.transform.SetParent(folder_Line_InCanvas, false);
-                    newObject.transform.localScale = new Vector2(1, squareSize);
+                    //newObject.transform.SetParent(folder_Line_InCanvas, false);
+                    //newObject.transform.localScale = new Vector2(1, squareSize);
                     newObject = SetLinesValues(newObject, x, y, true);
                     GameManager.instance.AddLineCount();
                     GameManager.instance.AddLineToList(newObject);
@@ -173,8 +173,8 @@ public class LevelManger : MonoBehaviour
                         offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
                 //newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival + lineLenght + (x * lineLenght),
                 //        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
-                newObject.transform.SetParent(folder_Line_InCanvas, false);
-                newObject.transform.localScale = new Vector2(1, squareSize);
+                //newObject.transform.SetParent(folder_Line_InCanvas, false);
+                //newObject.transform.localScale = new Vector2(1, squareSize);
                 newObject = SetLinesValues(newObject, x + 1, y, true);
                 GameManager.instance.AddLineCount();
                 GameManager.instance.AddLineToList(newObject);

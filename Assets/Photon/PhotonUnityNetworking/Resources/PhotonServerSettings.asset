@@ -41,6 +41,7 @@ MonoBehaviour:
   - RPC_ButtonPressed
   - ChatMessage
   - RPC_SetParent
+  - RPC_SetValues
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

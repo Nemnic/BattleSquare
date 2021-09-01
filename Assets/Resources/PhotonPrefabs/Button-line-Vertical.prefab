@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -3238139605103801383}
   m_Layer: 5
   m_Name: Button-line-Vertical
-  m_TagString: Untagged
+  m_TagString: Vertical
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -3238139605103801383}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
