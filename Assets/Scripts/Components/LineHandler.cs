@@ -26,7 +26,11 @@ public class LineHandler : MonoBehaviour
     {
         this.transform.SetParent(GameObject.Find("Lines").GetComponent<Transform>(), false);
 
+        GameManager.instance.AddLineCount();
+
         SetScale();
+
+        GameManager.instance.AddLineToList(this.gameObject);
 
     }
 
