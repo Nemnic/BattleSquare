@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Square : MonoBehaviour
+public class Square : MonoBehaviourPunCallbacks
 {
 
     [Header("Position")]
@@ -38,7 +40,18 @@ public class Square : MonoBehaviour
         //    this.transform.localScale = new Vector2(Globals.instance.squareSize, 1);
         //}
 
+        OnPhotonInstantiate();
+
         GameManager.instance.AddSquareToList(this.gameObject);
+    }
+
+    public void OnPhotonInstantiate()
+    {
+        object[] instantiationData = this.photonView.InstantiationData;
+        Vector2 myVec2 = (Vector2)instantiationData[0];
+
+        xPos = (int)myVec2.x;
+        yPos = (int)myVec2.y;
     }
 
     // Start is called before the first frame update

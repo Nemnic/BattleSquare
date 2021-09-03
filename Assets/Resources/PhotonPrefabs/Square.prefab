@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7498909325802867526}
   - component: {fileID: 4974330608507652075}
   m_Layer: 0
-  m_Name: Square Base
+  m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +123,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 0}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

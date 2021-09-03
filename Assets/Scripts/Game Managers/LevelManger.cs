@@ -95,11 +95,26 @@ public class LevelManger : MonoBehaviour
 
     void SetUpSquares()
     {
+        object[] myCustomInitData = new object[1];
+
         for (int x = 0; x < x_Squares; x++)
         {
             for (int y = 0; y < y_Squares ; y++)
             {
-                GameObject newSquare = InstantiateNewSquare(prefab_Square_Base, x, y, 1);
+                myCustomInitData[0] = new Vector2(x, y);
+                int offset = 1;
+
+
+                if (Globals.instance.is_Multiplayer)
+                {
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Square"), new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity, 0, myCustomInitData);
+                    //InstantiateNewSquare(prefab_Square_Base, x, y, offset);
+
+                }
+                else
+                {
+                    InstantiateNewSquare(prefab_Square_Base, x, y, offset);
+                }
             }
         }
     }
