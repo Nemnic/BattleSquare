@@ -27,6 +27,11 @@ public class Square : MonoBehaviour
         // Set default to
         xPos = defaultValueForErrorCheck;
         yPos = defaultValueForErrorCheck;
+
+        this.transform.SetParent(GameObject.Find("Squares").GetComponent<Transform>(), false);
+        
+        GameManager.instance.AddSquareToList(this.gameObject);
+
     }
 
     // Start is called before the first frame update

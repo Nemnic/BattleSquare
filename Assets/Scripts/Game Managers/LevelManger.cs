@@ -20,11 +20,6 @@ public class LevelManger : MonoBehaviour
     //[SerializeField] private GameObject prefab_Square_Blue;
     //[SerializeField] private GameObject prefab_Square_Orange;
 
-    [Space(10)]
-    [SerializeField] private Transform folder_Line_InCanvas;
-    [SerializeField] private Transform folder_Squares;
-    [SerializeField] private Transform folder_Dots;
-
     [Header("Line size pixels")]
     [SerializeField] private int linePixelsSize;
 
@@ -54,14 +49,6 @@ public class LevelManger : MonoBehaviour
         }
     }
 
-
-    [PunRPC]
-    void RPC_SetParent(Transform newGO)
-    {
-        Debug.Log("LevelManager: We are trying to Set Parent to the lines");
-        newGO.transform.SetParent(folder_Line_InCanvas, false);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -73,42 +60,49 @@ public class LevelManger : MonoBehaviour
         SetUpDots();
         SetupLines();
         SetUpSquares();
-
     }
 
     void SetUpDots()
     {
-        //  OLD With Middle Tots circles instead of buttons based
-
-        //for (int x = 0; x < x_Squares + 1; x++)
-        //{
-        //    for (int y = 0; y < y_Squares + 1; y++)
-        //    {
-        //        InstantiateNewObject(prefab_Dots, folder_Dots,  x,  y, 0 ,false);
-        //    }
-        //}
-
         for (int x = 0; x < x_Squares + 1; x++)
         {
             for (int y = 0; y < y_Squares + 1; y++)
             {
-                InstantiateNewObject(prefab_Dots, folder_Dots, x * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, y * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, 0, false);
+                InstantiateNewObject(prefab_Dots, x * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, y * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, 0);
             }
         }
     }
+
+    void InstantiateNewObject(GameObject prefab, float x, float y, int offset)
+    {
+        GameObject newObject = Instantiate(prefab, new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity);
+    }
+
+
     void SetUpSquares()
     {
         for (int x = 0; x < x_Squares; x++)
         {
             for (int y = 0; y < y_Squares ; y++)
             {
-                GameObject newSquare = InstantiateNewSquare(prefab_Square_Base, folder_Squares, x, y, 1, false);
-                
-                GameManager.instance.AddSquareToList(newSquare);
-                
+                GameObject newSquare = InstantiateNewSquare(prefab_Square_Base, x, y, 1, false);
             }
         }
     }
+
+    GameObject InstantiateNewSquare(GameObject prefab,  int x, int y, int offset, bool toScale)
+    {
+        GameObject newObject = Instantiate(prefab, new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity);
+        if (toScale)
+        {
+            newObject.transform.localScale = new Vector2(squareSize, 1);
+        }
+        newObject.GetComponent<Square>().xPos = x;
+        newObject.GetComponent<Square>().yPos = y;
+
+        return newObject;
+    }
+
 
     void SetupLines()
     {
@@ -130,7 +124,6 @@ public class LevelManger : MonoBehaviour
                     //newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * lineLenght) ,
                     //    posOffset + linePixelsSize - (y * lineLenght) ), Quaternion.identity);
 
-                    //photonView.RPC("RPC_SetParent", RpcTarget.All, newObject);
 
                     //newObject.transform.SetParent(folder_Line_InCanvas, false);       // moved to RPC
                     //newObject.transform.localScale = new Vector2(squareSize, 1);
@@ -191,31 +184,4 @@ public class LevelManger : MonoBehaviour
 
         return gameObject;
     }
-
-    void InstantiateNewObject(GameObject prefab, Transform folder, float x, float y, int offset, bool toScale)
-    {
-        GameObject newObject = Instantiate(prefab, new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity);
-        newObject.transform.SetParent(folder, false);
-        if (toScale)
-        {
-            newObject.transform.localScale = new Vector2(squareSize, 1);
-        }
-    }
-
-    GameObject InstantiateNewSquare(GameObject prefab, Transform folder, int x, int y, int offset, bool toScale)
-    {
-        GameObject newObject = Instantiate(prefab, new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity);
-        newObject.transform.SetParent(folder, false);
-        if (toScale)
-        {
-            newObject.transform.localScale = new Vector2(squareSize, 1);
-        }
-        newObject.GetComponent<Square>().xPos = x;
-        newObject.GetComponent<Square>().yPos = y;
-
-        return newObject;
-    }
-
-    
-
 }
