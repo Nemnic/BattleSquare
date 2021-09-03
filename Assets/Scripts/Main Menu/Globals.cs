@@ -32,7 +32,8 @@ public class Globals : MonoBehaviour
 
     [Header("VS AI Stuff")]
     [SerializeField] public bool is_VS_AI = false;
-    
+    [SerializeField] public bool is_Multiplayer = false;
+
 
     [Header("Color Theme")]
     [SerializeField] public Color colorDefault = new Color(178,178,178);

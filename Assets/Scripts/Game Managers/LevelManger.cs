@@ -43,7 +43,12 @@ public class LevelManger : MonoBehaviour
         lineLenght = linePixelsSize * squareSize;
         lineLenghtAndHalf = lineLenght + (lineLenght /4);           // TODO: more Clearity needed .. why is it 4 not 2 ?
 
-        if (PhotonNetwork.IsMasterClient)
+
+        if (!Globals.instance.is_Multiplayer)
+        {
+            SetupLevel();
+        }
+        else if (PhotonNetwork.IsMasterClient)
         {
             SetupLevel();
         }
@@ -68,14 +73,23 @@ public class LevelManger : MonoBehaviour
         {
             for (int y = 0; y < y_Squares + 1; y++)
             {
-                InstantiateNewObject(prefab_Dots, x * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, y * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, 0);
+                InstantiateNewDot(prefab_Dots, x * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots, y * linePixelsSize - lineLenghtAndHalf + magicNrExtraOffsetsForDots);
             }
         }
     }
 
-    void InstantiateNewObject(GameObject prefab, float x, float y, int offset)
+    void InstantiateNewDot(GameObject prefab, float x, float y)
     {
-        GameObject newObject = Instantiate(prefab, new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity);
+        GameObject newObject;
+
+        if (Globals.instance.is_Multiplayer)
+        {
+            newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "DotButton"), new Vector2(-x_Squares + x * squareSize, y_Squares - y * squareSize), Quaternion.identity);
+        }
+        else
+        {
+            newObject = Instantiate(prefab, new Vector2(-x_Squares + x * squareSize, y_Squares - y * squareSize), Quaternion.identity);
+        }
     }
 
 
@@ -85,18 +99,15 @@ public class LevelManger : MonoBehaviour
         {
             for (int y = 0; y < y_Squares ; y++)
             {
-                GameObject newSquare = InstantiateNewSquare(prefab_Square_Base, x, y, 1, false);
+                GameObject newSquare = InstantiateNewSquare(prefab_Square_Base, x, y, 1);
             }
         }
     }
 
-    GameObject InstantiateNewSquare(GameObject prefab,  int x, int y, int offset, bool toScale)
+    GameObject InstantiateNewSquare(GameObject prefab,  int x, int y, int offset)
     {
         GameObject newObject = Instantiate(prefab, new Vector2(-x_Squares + offset + x * squareSize, y_Squares - offset - y * squareSize), Quaternion.identity);
-        if (toScale)
-        {
-            newObject.transform.localScale = new Vector2(squareSize, 1);
-        }
+
         newObject.GetComponent<Square>().xPos = x;
         newObject.GetComponent<Square>().yPos = y;
 

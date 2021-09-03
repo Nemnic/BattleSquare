@@ -9,6 +9,8 @@ public class SceneHandler : MonoBehaviour
 
     public void ToMainMenu()
     {
+        ResetModeSet();
+
         SFX.instance.PlayBack();
         SceneManager.LoadScene(0);
     }
@@ -35,6 +37,7 @@ public class SceneHandler : MonoBehaviour
     {
         SFX.instance.PlaySelect();
 
+        Globals.instance.is_Multiplayer = true;
         SceneManager.LoadScene("Lobby");
     }
 
@@ -58,6 +61,12 @@ public class SceneHandler : MonoBehaviour
 
         Debug.Log("Quit button was pressed");
         Application.Quit();
+    }
+
+    private void ResetModeSet()
+    {
+        Globals.instance.is_Multiplayer = false;
+        Globals.instance.is_VS_AI = false;
     }
 
     // Temp untill system is made completely

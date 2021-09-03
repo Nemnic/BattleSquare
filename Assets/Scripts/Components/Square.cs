@@ -21,6 +21,8 @@ public class Square : MonoBehaviour
 
     [SerializeField] public int squareValue = 0;
 
+    // if we want scaling option later on
+    //private bool doWeWannaScaleIt = false;
 
     private void Awake()
     {   
@@ -29,9 +31,14 @@ public class Square : MonoBehaviour
         yPos = defaultValueForErrorCheck;
 
         this.transform.SetParent(GameObject.Find("Squares").GetComponent<Transform>(), false);
-        
-        GameManager.instance.AddSquareToList(this.gameObject);
 
+        // Incase we want to scale  - Not in use atm    - if used might need to be recalculated
+        //if (doWeWannaScaleIt)
+        //{
+        //    this.transform.localScale = new Vector2(Globals.instance.squareSize, 1);
+        //}
+
+        GameManager.instance.AddSquareToList(this.gameObject);
     }
 
     // Start is called before the first frame update
