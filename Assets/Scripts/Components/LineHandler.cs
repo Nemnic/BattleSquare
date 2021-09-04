@@ -30,7 +30,10 @@ public class LineHandler : MonoBehaviourPunCallbacks
 
         SetScaleAndIfVertical();
 
-        OnPhotonInstantiate();
+        if (Globals.instance.is_Multiplayer)
+        {
+            OnPhotonInstantiate();
+        }
 
         GameManager.instance.AddLineToList(this.gameObject);
 
@@ -79,7 +82,15 @@ public class LineHandler : MonoBehaviourPunCallbacks
 
     public void ButtonPressed_With_RPC()
     {
-        myPhotonView.RPC("RPC_ButtonPressed", RpcTarget.All);
+        if (Globals.instance.is_Multiplayer)
+        {
+            myPhotonView.RPC("RPC_ButtonPressed", RpcTarget.All);
+        }
+        else
+        {
+            isClicked = true;
+        }
+
     }
 
     // Update is called once per frame

@@ -39,8 +39,10 @@ public class Square : MonoBehaviourPunCallbacks
         //{
         //    this.transform.localScale = new Vector2(Globals.instance.squareSize, 1);
         //}
-
-        OnPhotonInstantiate();
+        if (Globals.instance.is_Multiplayer)
+        {
+            OnPhotonInstantiate();
+        }
 
         GameManager.instance.AddSquareToList(this.gameObject);
     }

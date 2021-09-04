@@ -141,49 +141,65 @@ public class LevelManger : MonoBehaviour
 
                 if (y == 0)
                 {
-                    myCustomInitData[0] = new Vector2(x, y);
-                    newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Horizontal"), new Vector2(-posOffset + (x * lineLenght),
-                        posOffset + linePixelsSize - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
+                    if (Globals.instance.is_Multiplayer)
+                    {
+                        myCustomInitData[0] = new Vector2(x, y);
+                        newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Horizontal"), new Vector2(-posOffset + (x * lineLenght),
+                            posOffset + linePixelsSize - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
+                    }
+                    else
+                    {
+                        newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * lineLenght),
+                        posOffset + linePixelsSize - (y * lineLenght)), Quaternion.identity);
 
-                    //newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * lineLenght) ,
-                    //    posOffset + linePixelsSize - (y * lineLenght) ), Quaternion.identity);
-
-
-                    newObject = SetLinesValues(newObject, x, y);
-
+                        newObject = SetLinesValues(newObject, x, y);
+                    }
                 }
 
-                myCustomInitData[0] = new Vector2(x, y+1);
-                newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Horizontal"), new Vector2(-posOffset + (x * squareSize * linePixelsSize),
-                        posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize * 2), Quaternion.identity, 0, myCustomInitData);
-                //newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * squareSize * linePixelsSize) ,
-                //        posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize*2 ), Quaternion.identity);
-                newObject = SetLinesValues(newObject, x, y+1);
-
-
+                if (Globals.instance.is_Multiplayer)
+                {
+                    myCustomInitData[0] = new Vector2(x, y + 1);
+                    newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Horizontal"), new Vector2(-posOffset + (x * squareSize * linePixelsSize),
+                            posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize * 2), Quaternion.identity, 0, myCustomInitData);
+                }
+                else
+                {
+                    newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * squareSize * linePixelsSize),
+                        posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize * 2), Quaternion.identity);
+                    newObject = SetLinesValues(newObject, x, y + 1);
+                }
 
 
                 //  Verticals
                 float offsetVertival = (x_Squares * lineLenght) / 2;
                 if (x == 0)
                 {
-                    myCustomInitData[0] = new Vector2(x, y);
-                    newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Vertical"), new Vector2(-offsetVertival,
-                        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
-                    //newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival,
-                    //    offsetVertival - lineLenght/2 - (y * lineLenght)), Quaternion.identity);
-                    newObject = SetLinesValues(newObject, x, y);
-
-
-
+                    if (Globals.instance.is_Multiplayer)
+                    {
+                        myCustomInitData[0] = new Vector2(x, y);
+                        newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Vertical"), new Vector2(-offsetVertival,
+                            offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
+                    }
+                    else
+                    {
+                        newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival,
+                        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
+                        newObject = SetLinesValues(newObject, x, y);
+                    }
                 }
 
-                myCustomInitData[0] = new Vector2(x + 1 , y);
-                newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Vertical"), new Vector2(-offsetVertival + lineLenght + (x * lineLenght),
-                        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
-                //newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival + lineLenght + (x * lineLenght),
-                //        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
-                newObject = SetLinesValues(newObject, x + 1, y);
+                if (Globals.instance.is_Multiplayer)
+                {
+                    myCustomInitData[0] = new Vector2(x + 1, y);
+                    newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Vertical"), new Vector2(-offsetVertival + lineLenght + (x * lineLenght),
+                            offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
+                }
+                else
+                {
+                    newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival + lineLenght + (x * lineLenght),
+                            offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
+                    newObject = SetLinesValues(newObject, x + 1, y);
+                }
             }
         }
     }
