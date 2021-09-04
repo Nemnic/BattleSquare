@@ -130,75 +130,69 @@ public class LevelManger : MonoBehaviour
     void SetupLines()
     {
         GameObject newObject;
-
+        object[] myCustomInitData = new object[1];
 
         for (int x = 0; x < x_Squares; x++)
         {
             for (int y = 0; y < y_Squares; y++)
             {
-                
+
                 int posOffset = (x_Squares * linePixelsSize - linePixelsSize);
 
                 if (y == 0)
                 {
+                    myCustomInitData[0] = new Vector2(x, y);
                     newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Horizontal"), new Vector2(-posOffset + (x * lineLenght),
-                        posOffset + linePixelsSize - (y * lineLenght)), Quaternion.identity);
+                        posOffset + linePixelsSize - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
 
                     //newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * lineLenght) ,
                     //    posOffset + linePixelsSize - (y * lineLenght) ), Quaternion.identity);
 
 
-                    //newObject.transform.localScale = new Vector2(squareSize, 1);
-                    newObject = SetLinesValues(newObject, x, y, false);
-                    //InstantiateNewObject(prefab_Horicontal_Line, folder_Line_InCanvas, x, y, 1 , true);
+                    newObject = SetLinesValues(newObject, x, y);
 
                 }
 
+                myCustomInitData[0] = new Vector2(x, y+1);
                 newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Horizontal"), new Vector2(-posOffset + (x * squareSize * linePixelsSize),
-                        posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize * 2), Quaternion.identity);
+                        posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize * 2), Quaternion.identity, 0, myCustomInitData);
                 //newObject = Instantiate(prefab_Horicontal_Line, new Vector2(-posOffset + (x * squareSize * linePixelsSize) ,
                 //        posOffset + linePixelsSize - (y * squareSize * linePixelsSize) - linePixelsSize*2 ), Quaternion.identity);
-                //newObject.transform.localScale = new Vector2(squareSize, 1);
-                newObject = SetLinesValues(newObject, x, y+1, false);
+                newObject = SetLinesValues(newObject, x, y+1);
 
 
 
 
                 //  Verticals
                 float offsetVertival = (x_Squares * lineLenght) / 2;
-
                 if (x == 0)
                 {
-
+                    myCustomInitData[0] = new Vector2(x, y);
                     newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Vertical"), new Vector2(-offsetVertival,
-                        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
+                        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
                     //newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival,
                     //    offsetVertival - lineLenght/2 - (y * lineLenght)), Quaternion.identity);
-                    //newObject.transform.localScale = new Vector2(1, squareSize);
-                    newObject = SetLinesValues(newObject, x, y, true);
+                    newObject = SetLinesValues(newObject, x, y);
 
 
 
                 }
 
+                myCustomInitData[0] = new Vector2(x + 1 , y);
                 newObject = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Button-line-Vertical"), new Vector2(-offsetVertival + lineLenght + (x * lineLenght),
-                        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
+                        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity, 0, myCustomInitData);
                 //newObject = Instantiate(prefab_Verticle_Line, new Vector2(-offsetVertival + lineLenght + (x * lineLenght),
                 //        offsetVertival - lineLenght / 2 - (y * lineLenght)), Quaternion.identity);
-                //newObject.transform.localScale = new Vector2(1, squareSize);
-                newObject = SetLinesValues(newObject, x + 1, y, true);
-
-
-
+                newObject = SetLinesValues(newObject, x + 1, y);
             }
         }
     }
 
-    GameObject SetLinesValues(GameObject gameObject, int x, int y, bool isVertical)
+    GameObject SetLinesValues(GameObject gameObject, int x, int y)
     {
         gameObject.GetComponent<LineHandler>().xPos = x;
         gameObject.GetComponent<LineHandler>().yPos = y;
-        gameObject.GetComponent<LineHandler>().isVertical = isVertical;
+
 
         return gameObject;
     }

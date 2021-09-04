@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class LineHandler : MonoBehaviour
+public class LineHandler : MonoBehaviourPunCallbacks
 {
     private PhotonView myPhotonView;
     [SerializeField] private bool isClicked = false;
@@ -18,7 +18,7 @@ public class LineHandler : MonoBehaviour
     [Space (10)]
     [SerializeField] public bool isVertical;
 
-    public int myFinishCountIndex = -1;
+    [SerializeField, Tooltip("Unpressed is -1, when pressed will be assigned a nr from 59 and down to 0")] public int myFinishCountIndex = -1;
     private bool darkColorSet = false;
 
 
@@ -28,20 +28,33 @@ public class LineHandler : MonoBehaviour
 
         GameManager.instance.AddLineCount();
 
-        SetScale();
+        SetScaleAndIfVertical();
+
+        OnPhotonInstantiate();
 
         GameManager.instance.AddLineToList(this.gameObject);
 
     }
 
-    private void SetScale()
+    public void OnPhotonInstantiate()
+    {
+        object[] instantiationData = this.photonView.InstantiationData;
+        Vector2 myVec2 = (Vector2)instantiationData[0];
+
+        xPos = (int)myVec2.x;
+        yPos = (int)myVec2.y;
+    }
+
+    private void SetScaleAndIfVertical()
     {
         if (gameObject.tag == "Horizontal")
         {
+            isVertical = false;
             this.transform.localScale = new Vector2(Globals.instance.squareSize, 1);
         }
         else if (gameObject.tag == "Vertical")
         {
+            isVertical = true;
             this.transform.localScale = new Vector2(1, Globals.instance.squareSize);
         }
         else

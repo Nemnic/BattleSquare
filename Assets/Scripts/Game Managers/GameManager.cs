@@ -251,29 +251,29 @@ public class GameManager : MonoBehaviour
     private static void SetIsClickedRight(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Right = true;
-        CheckDoneAndIncreaseSquareValue(squareFromList);
+        IncreaseSquareValueAndCheckIfDone(squareFromList);
     }
     private static void SetIsClickedLeft(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Left = true;
-        CheckDoneAndIncreaseSquareValue(squareFromList);
+        IncreaseSquareValueAndCheckIfDone(squareFromList);
 
     }
     private static void SetIsClickedUp(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Up = true;
-        CheckDoneAndIncreaseSquareValue(squareFromList);
+        IncreaseSquareValueAndCheckIfDone(squareFromList);
 
     }
     private static void SetIsClickedDown(GameObject squareFromList)
     {
         squareFromList.GetComponent<Square>().isClicked_Down = true;
-        CheckDoneAndIncreaseSquareValue(squareFromList);
+        IncreaseSquareValueAndCheckIfDone(squareFromList);
     }
 
-    private static void CheckDoneAndIncreaseSquareValue(GameObject squareFromList)
+    private static void IncreaseSquareValueAndCheckIfDone(GameObject squareFromList)
     {
-        squareFromList.GetComponent<Square>().squareValue++;
+        //squareFromList.GetComponent<Square>().squareValue++;
         squareFromList.GetComponent<Square>().CheckIfDone();
     }
 

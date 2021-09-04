@@ -90,13 +90,18 @@ public class Square : MonoBehaviourPunCallbacks
                 {
                     gameObject.GetComponent<Renderer>().material.color = Globals.instance.colorOrange;
                 }
-
+                isDone = true;
             }
         }
     }
 
     public void CheckIfDone()
     {
+        squareValue++;
+        if (squareValue > 4)
+        {
+            Debug.LogError("Square value should never pass 4!!! Current Square value :" + squareValue);
+        }
 
         if (CheckSquareStatus())
         {
