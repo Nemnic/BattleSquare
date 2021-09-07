@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class TurnManager : MonoBehaviour
 {
@@ -27,6 +28,15 @@ public class TurnManager : MonoBehaviour
     [Header("Vs AI stuff")]
     [SerializeField] private GameObject blockPanel;
 
+    private void Start()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            BlockPlayer(true);
+        }
+    }
+
+
     public void SwapTurn()
     {
         isBluesTurn = !isBluesTurn;
@@ -34,6 +44,10 @@ public class TurnManager : MonoBehaviour
         if (Globals.instance.is_VS_AI)
         {
             BlockPlayerDuringAIMove();
+        }
+        if (Globals.instance.is_Multiplayer)
+        {
+            BlockPlayersDuringMultiplayer();
         }
     }
 
@@ -68,6 +82,32 @@ public class TurnManager : MonoBehaviour
         else
         {
             BlockPlayer(true);
+        }
+    }
+
+    public void BlockPlayersDuringMultiplayer()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (isBluesTurn)
+            {
+                BlockPlayer(false);
+            }
+            else
+            {
+                BlockPlayer(true);
+            }
+        }
+        else
+        {
+            if (isBluesTurn)
+            {
+                BlockPlayer(true);
+            }
+            else
+            {
+                BlockPlayer(false);
+            }
         }
     }
 
