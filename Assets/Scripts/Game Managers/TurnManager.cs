@@ -30,9 +30,12 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        if (!PhotonNetwork.IsMasterClient)
+        if (Globals.instance.is_Multiplayer)
         {
-            BlockPlayer(true);
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                BlockPlayer(true);
+            }
         }
     }
 
