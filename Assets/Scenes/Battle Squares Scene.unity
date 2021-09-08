@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9433962, g: 0.5562478, b: 0.5562478, a: 0.392}
+  m_Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -907,10 +907,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-Draw a line between two dots
+  m_text: '- Press on a white line between two dots and try to surround one square.
 
-    -If you create a square with that line
-    you get one point, and can place another line'
+    -
+    Pressed line change coler when used.
+
+    - If you create a square with that
+    line you get one point, and can place another line'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -937,10 +940,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 30
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -1280,6 +1283,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 894062708}
+        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
+        m_MethodName: DisconnectPhoton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 894062708}
         m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
         m_MethodName: ToMainMenu
@@ -2168,9 +2183,6 @@ MonoBehaviour:
   prefab_Verticle_Line: {fileID: 7856400991309661865, guid: 11ecf8a1bd7be7948913cbf745cd13ae, type: 3}
   prefab_Horicontal_Line: {fileID: 7810346037754238757, guid: cd65db2f653e5bf43a3b432388243b06, type: 3}
   prefab_Square_Base: {fileID: 3971406659501357044, guid: 5b14b42ced8963049ab27725d22e4e4d, type: 3}
-  folder_Line_InCanvas: {fileID: 358645900}
-  folder_Squares: {fileID: 1793052158}
-  folder_Dots: {fileID: 1884760145}
   linePixelsSize: 88
   lineLenght: 0
   lineLenghtAndHalf: 0

@@ -71,11 +71,11 @@ public class SceneHandler : MonoBehaviour
 
     // Temp untill system is made completely
     
-    public void OldLobby()
+    public void SingelPlayerLobby()
     {
         SFX.instance.PlaySelect();
 
-        SceneManager.LoadScene("Lobby Old");
+        SceneManager.LoadScene("Lobby SingelPlayer");
     }
 
 
