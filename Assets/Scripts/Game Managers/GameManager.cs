@@ -41,14 +41,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (Globals.instance.is_Multiplayer)
         {
-            blueName.text = PhotonNetwork.NickName;
+            if (PhotonNetwork.IsMasterClient)
+            {
+                blueName.text = PhotonNetwork.NickName;
+            }
+            else
+            {
+                orangeName.text = PhotonNetwork.NickName;
+            }
         }
         else
         {
-            orangeName.text = PhotonNetwork.NickName;
+            blueName.text = "";
+            orangeName.text = "";
         }
+        
     }
 
     public void SetName(string nameIn)
