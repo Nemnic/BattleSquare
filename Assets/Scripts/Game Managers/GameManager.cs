@@ -287,4 +287,58 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    #region Setting Lines Value
+
+    public void SetLineValueToSurrondingSquare(int xPos, int yPos, int squaresValue)
+    {
+        // check 4 line 
+        foreach (var linefromList in lineList)
+        {
+            LineHandler currentLineFromList = linefromList.GetComponent<LineHandler>();
+
+            if (currentLineFromList.isVertical)             // first check vertical sides
+            {
+                if (currentLineFromList.xPos == xPos && currentLineFromList.yPos == yPos)
+                {
+                    currentLineFromList.AddlineValue(squaresValue);
+                }
+                if (currentLineFromList.xPos == xPos + 1  && currentLineFromList.yPos == yPos )
+                {
+                    currentLineFromList.AddlineValue(squaresValue);
+                }
+            }
+            else                                            // then check horizontal lines
+            {
+                if (currentLineFromList.xPos == xPos && currentLineFromList.yPos == yPos)
+                {
+                    currentLineFromList.AddlineValue(squaresValue);
+                }
+                if (currentLineFromList.xPos == xPos  && currentLineFromList.yPos == yPos + 1)
+                {
+                    currentLineFromList.AddlineValue(squaresValue);
+                }
+            }
+
+        }
+    }
+
+    #endregion
+
+    public int PickLineFromHighValueForAI()
+    {
+        int pickedLine = -1;
+
+        for (int i = 0; i < lineList.Count; i++)
+        {
+            LineHandler currentLine = lineList[i].GetComponent<LineHandler>();
+            if (currentLine.lineValue == 3)
+            {
+                pickedLine = i;
+                //break;
+            }
+        }
+
+        return pickedLine;
+    }
 }

@@ -21,6 +21,9 @@ public class LineHandler : MonoBehaviourPunCallbacks
     [SerializeField, Tooltip("Unpressed is -1, when pressed will be assigned a nr from 59 and down to 0")] public int myFinishCountIndex = -1;
     private bool darkColorSet = false;
 
+    // For when VS IA
+    [Header("Values when playing vs AI")]
+    [SerializeField] public int lineValue;
 
     void Awake()
     {
@@ -156,4 +159,18 @@ public class LineHandler : MonoBehaviourPunCallbacks
         GetComponent<Button>().colors = colors;
     }
 
+    public void AddlineValue(int squaresValue)
+    {
+        //Debug.Log("LineHandler: Our Current Line: (" + xPos + "." + yPos + ") value is: " + lineValue + " and we are replaceing it with SquareValue: " + squaresValue);
+
+        if (lineValue < squaresValue)
+        {
+            lineValue = squaresValue;
+        }
+
+        if (lineValue < 1 || lineValue > 3)
+        {
+            Debug.LogError("LineHandler ERROR, unexpected value of line handler is : " + lineValue + " CHECK WHAT IS GOING ON!!!");
+        }
+    }
 }

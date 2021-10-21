@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AIManager : MonoBehaviour
 {
     #region Singleton
@@ -21,7 +22,9 @@ public class AIManager : MonoBehaviour
     #endregion
 
     //Debug check: keep track of AI move nr 
-    [SerializeField] private int moveNr = 0;
+    [SerializeField] private int moveNr = 0;        // For Debuging
+
+    [SerializeField] private int successrate = 90;
 
     private float timer = 0;
 
@@ -41,17 +44,33 @@ public class AIManager : MonoBehaviour
         {
             DoTurn();
         }
-
-        
     }
 
     private void DoTurn()
     {
         // Find and select a random aktiv line
         int listMax = GameManager.instance.lineList.Count;
+        int linePicked = Random.Range(0, listMax);
+        int randomChance = Random.Range(1, 101);
+
+
         if (listMax > 0)
         {
-            int linePicked = Random.Range(0, listMax);
+            int tempLine = GameManager.instance.PickLineFromHighValueForAI();
+
+            if (tempLine != -1)         // if Line found with value 3 => will give point
+            {
+                if (successrate > randomChance)
+                {
+                    linePicked = tempLine;
+                    Debug.Log("Random = " + randomChance + ", Picked used, ");
+                }
+                else
+                {
+                    Debug.Log("Random = " + randomChance + ", Random used, ");
+                }
+            }
+
             GameObject clickingObject = GameManager.instance.lineList[linePicked];
 
             moveNr++;
@@ -65,6 +84,4 @@ public class AIManager : MonoBehaviour
             Debug.LogError("AI Manager: No more list to click! Game should have not have activated this function at this point!");
         }
     }
-
-
 }

@@ -125,13 +125,10 @@ public class Square : MonoBehaviourPunCallbacks
             }
 
             GameManager.instance.squareDone = true;
-
         }
         else
         {
-            //Debug.Log("CheckIfDone returned : false at :" + xPos + " , " + yPos + " This square not done");
+            GameManager.instance.SetLineValueToSurrondingSquare(xPos, yPos, squareValue);
         }
-
     }
-
 }

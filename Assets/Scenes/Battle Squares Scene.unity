@@ -910,7 +910,7 @@ MonoBehaviour:
   m_text: '- Press on a white line between two dots and try to surround one square.
 
     -
-    Pressed line change coler when used.
+    Pressed line change color when used.
 
     - If you create a square with that
     line you get one point, and can place another line'
